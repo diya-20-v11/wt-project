@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Inquiries | Interior Studio</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <div class="login-brand-logo" style="width:34px; height:34px; margin:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </div>
+        <div class="sidebar-brand-name">INTERIOR STUDIO</div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-item">
+          <a href="1-%20Profile.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            Dashboard
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="3.%20%20Order%20List.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            Manage Projects
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="2.%20%20Client%20List.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Manage Services
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="5.%20Feedback%20review%20list.html" class="sidebar-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Customer Inquiries
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="4.%20Login%20%20page.html" class="sidebar-logout" onclick="adminLogout(); return false;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- ================= TOP HEADER ================= -->
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="hamburger-btn" aria-label="Toggle menu">☰</button>
+        <span style="font-weight: 600; color:#718096; font-size:13.5px;">Studio Administration Portal</span>
+      </div>
+
+      <div class="header-right">
+        <a href="../Client/1-%20Home%20Page.html" class="client-view-link" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Preview Client Website
+        </a>
+
+        <div class="admin-profile-pill">
+          <div class="admin-avatar">A</div>
+          <span class="admin-name">Admin &#9662;</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT (Figure 2.5 Wireframe) ================= -->
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <h1 class="admin-page-title">Customer Inquiries</h1>
+      </div>
+
+      <!-- Search & Status Filter Bar (Figure 2.5) -->
+      <div class="table-filter-bar">
+        <div class="search-input-wrap">
+          <span class="search-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input type="text" id="searchInquiryInput" placeholder="Search inquiries...">
+        </div>
+
+        <div>
+          <select id="filterStatusSelect" class="filter-select">
+            <option value="All">All Status</option>
+            <option value="New">New</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Responded">Responded</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Inquiries Table (Figure 2.5 Wireframe) -->
+      <div class="admin-table-card">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Project Type</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th style="width: 130px;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="inquiriesTableBody">
+              <!-- Rendered dynamically by admin.js from Store -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls (Figure 2.5 Wireframe) -->
+        <div class="pagination-wrapper">
+          <button class="page-btn" aria-label="Previous">&lt;</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">...</button>
+          <button class="page-btn" aria-label="Next">&gt;</button>
+        </div>
+      </div>
+
+      <!-- Dotted Notice (Figure 2.5 Wireframe) -->
+      <div class="wireframe-dotted-note">
+        Inquiries submitted from the client-side Contact/Inquiry form will appear here for management.
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= OVERLAY FOR DRAWER ================= -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeInquiryDrawer()"></div>
+
+  <!-- ================= INQUIRY DETAILS SLIDE-OUT DRAWER (Figure 2.5 Wireframe) ================= -->
+  <aside class="inquiry-details-drawer" id="inquiryDrawer">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Inquiry Details</h2>
+      <button class="drawer-close" onclick="closeInquiryDrawer()">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <div class="detail-row">
+        <div class="detail-label">Name</div>
+        <div class="detail-value" id="drawerName">Riya Shah</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Email</div>
+        <div class="detail-value" id="drawerEmail">riya@example.com</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Phone</div>
+        <div class="detail-value" id="drawerPhone">9876543210</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Project Type</div>
+        <div class="detail-value" id="drawerType">Residential</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Date</div>
+        <div class="detail-value" id="drawerDate">25 May 2025</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Message</div>
+        <div class="detail-message-box" id="drawerMessage">
+          I would like to design the interiors of my 3BHK apartment. Please share your packages and process.
+        </div>
+      </div>
+
+      <div class="detail-row" style="margin-top: 24px;">
+        <label class="detail-label" for="drawerStatusSelect">Update Status</label>
+        <select id="drawerStatusSelect" class="form-control" style="margin-top: 6px;">
+          <option value="New">New</option>
+          <option value="Reviewed">Reviewed</option>
+          <option value="Responded">Responded</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <button class="btn btn-primary" style="width: 100%; margin-bottom: 8px;" onclick="updateCurrentInquiryStatus()">Save Status Changes</button>
+      <button class="btn btn-outline" style="width: 100%;" onclick="markCurrentAsReviewed()">Mark as Reviewed</button>
+    </div>
+  </aside>
+
+  <script src="../assets/js/store.js"></script>
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>
+
