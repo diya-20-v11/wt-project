@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects & Services Portfolio | InteriorDesign</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .portfolio-view-switch {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 20px 0 40px 0;
+    }
+    .view-switch-btn {
+      padding: 10px 24px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 30px;
+      background: #ffffff;
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+    .view-switch-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= SITE HEADER / NAVBAR ================= -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="1-%20Home%20Page.html" class="brand-logo">
+        <div class="brand-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </div>
+        InteriorDesign
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="1-%20Home%20Page.html" class="nav-link">Home</a></li>
+          <li><a href="2.%20About%20Us.html" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link" id="navServicesLink" onclick="switchView('services')">Services</a></li>
+          <li><a href="#projects" class="nav-link active" id="navProjectsLink" onclick="switchView('projects')">Projects</a></li>
+          <li><a href="3.%20Contact.html" class="nav-link">Contact</a></li>
+          <li><a href="4.%20Login%20%20sign%20up.html" class="nav-auth-btn">Client Portal</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- View Mode Switcher -->
+    <div class="portfolio-view-switch">
+      <button class="view-switch-btn active" id="btnSwitchProjects" onclick="switchView('projects')">Our Projects (Figure 1.4)</button>
+      <button class="view-switch-btn" id="btnSwitchServices" onclick="switchView('services')">Our Services (Figure 1.3)</button>
+    </div>
+
+    <!-- ================= FIGURE 1.4: PROJECTS SECTION ================= -->
+    <section id="projectsSection">
+      <h1 class="page-header-title">Our Projects</h1>
+
+      <!-- Filter buttons (Wireframe Figure 1.4) -->
+      <div class="filter-tabs-wrapper">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-category="All">All</button>
+          <button class="filter-btn" data-category="Residential">Residential</button>
+          <button class="filter-btn" data-category="Commercial">Commercial</button>
+          <button class="filter-btn" data-category="Office">Office</button>
+        </div>
+        <div class="filter-helper-note">(Filter projects by category - JavaScript Feature)</div>
+      </div>
+
+      <!-- Projects 6-Grid matching wireframe -->
+      <div class="projects-grid-6" id="projects-grid-container">
+        <!-- Rendered by main.js with localStorage dynamic synchronization -->
+      </div>
+    </section>
+
+    <!-- ================= FIGURE 1.3: SERVICES SECTION ================= -->
+    <section id="servicesSection" style="display: none;">
+      <h1 class="page-header-title">Our Services</h1>
+
+      <!-- 2x2 Services Grid (Figure 1.3 Wireframe) -->
+      <div class="services-2x2-grid">
+        <!-- Service 1: Residential Interior Design -->
+        <div class="service-card-2x2">
+          <div class="service-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Residential Interior Design">
+          </div>
+          <div class="service-card-content">
+            <div>
+              <h3 class="service-card-title">Residential Interior Design</h3>
+              <p class="service-card-desc">We create warm, stylish and functional home interiors.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="openServiceModal('Residential Interior Design')">Learn More</button>
+          </div>
+        </div>
+
+        <!-- Service 2: Commercial Interior Design -->
+        <div class="service-card-2x2">
+          <div class="service-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Commercial Interior Design">
+          </div>
+          <div class="service-card-content">
+            <div>
+              <h3 class="service-card-title">Commercial Interior Design</h3>
+              <p class="service-card-desc">Modern and impactful spaces for businesses.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="openServiceModal('Commercial Interior Design')">Learn More</button>
+          </div>
+        </div>
+
+        <!-- Service 3: Office Design -->
+        <div class="service-card-2x2">
+          <div class="service-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Office Design">
+          </div>
+          <div class="service-card-content">
+            <div>
+              <h3 class="service-card-title">Office Design</h3>
+              <p class="service-card-desc">Productive and inspiring workspaces.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="openServiceModal('Office Design')">Learn More</button>
+          </div>
+        </div>
+
+        <!-- Service 4: Space Planning -->
+        <div class="service-card-2x2">
+          <div class="service-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Space Planning">
+          </div>
+          <div class="service-card-content">
+            <div>
+              <h3 class="service-card-title">Space Planning</h3>
+              <p class="service-card-desc">Smart use of space for better living.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="openServiceModal('Space Planning')">Learn More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centered Action Button (Figure 1.3 Wireframe) -->
+      <div class="centered-action-wrap">
+        <a href="3.%20Contact.html" class="btn btn-primary" style="padding: 14px 40px;">Send an Inquiry</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= MODAL: PROJECT DETAILS ================= -->
+  <div class="modal-overlay" id="projectDetailsModal">
+    <div class="modal-window">
+      <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      <img src="" alt="Project Photo" id="modalProjectImg" class="modal-banner-img">
+      <div class="modal-body">
+        <span class="project-card-category-badge" id="modalProjectCategory" style="position:static; display:inline-block; margin-bottom:10px;">Residential</span>
+        <h2 id="modalProjectTitle" style="font-size: 26px; margin-bottom: 8px;">Project Title</h2>
+        <p style="font-size:13px; color:#718096; margin-bottom: 16px;">Completed: <span id="modalProjectDate">May 2025</span> | Location: <span id="modalProjectLocation">City</span></p>
+        <p id="modalProjectDesc" style="margin-bottom: 20px; line-height: 1.7; color:#4a5568;">Project description goes here...</p>
+        <div style="background:#f7fafc; padding:16px; border-radius:6px; margin-bottom:20px; border:1px solid #e2e8f0;">
+          <p style="font-size:13.5px; margin-bottom:6px;"><strong>Scope:</strong> <span id="modalProjectScope">Full Turnkey Design</span></p>
+          <p style="font-size:13.5px;"><strong>Duration:</strong> <span id="modalProjectDuration">8 Weeks</span></p>
+        </div>
+        <a href="3.%20Contact.html" class="btn btn-primary" style="width: 100%;">Inquire About Similar Design</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: SERVICE DETAILS ================= -->
+  <div class="modal-overlay" id="serviceDetailsModal">
+    <div class="modal-window">
+      <button class="modal-close-btn" onclick="document.getElementById('serviceDetailsModal').classList.remove('active')">&times;</button>
+      <div class="modal-body" style="padding-top: 36px;">
+        <span class="status-badge badge-active" style="margin-bottom: 12px;">Active Service Package</span>
+        <h2 id="modalServiceTitle" style="font-size: 24px; margin-bottom: 12px;">Service Name</h2>
+        <p id="modalServiceDesc" style="font-weight: 600; color: #2d3748; margin-bottom: 16px;"></p>
+        <p id="modalServiceDetails" style="color: #4a5568; line-height: 1.7; margin-bottom: 24px;"></p>
+        <a href="3.%20Contact.html" class="btn btn-primary" style="width: 100%;">Book This Consultation</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SITE FOOTER (Wireframe) ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <h4>InteriorDesign</h4>
+          <p class="footer-tagline">Creative Spaces. Better Life.</p>
+        </div>
+
+        <div class="footer-col-contact">
+          <h5>Contact us</h5>
+          <p class="footer-contact-text">
+            +1 234 567 8900<br>
+            info@interiordesign.com
+          </p>
+        </div>
+
+        <div class="footer-col-social">
+          <h5>Follow us</h5>
+          <div class="social-icons-wrap">
+            <a href="#" class="social-circle-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2025 InteriorDesign Firm. All rights reserved.</span>
+        <span>Administrator Access: <a href="../Admin/4.%20Login%20%20page.html" class="admin-portal-link">Admin Dashboard &rarr;</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/store.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    function switchView(view) {
+      const projSec = document.getElementById('projectsSection');
+      const servSec = document.getElementById('servicesSection');
+      const btnP = document.getElementById('btnSwitchProjects');
+      const btnS = document.getElementById('btnSwitchServices');
+      const navP = document.getElementById('navProjectsLink');
+      const navS = document.getElementById('navServicesLink');
+
+      if (view === 'services') {
+        projSec.style.display = 'none';
+        servSec.style.display = 'block';
+        btnP.classList.remove('active');
+        btnS.classList.add('active');
+        navP.classList.remove('active');
+        navS.classList.add('active');
+        window.location.hash = 'services';
+      } else {
+        projSec.style.display = 'block';
+        servSec.style.display = 'none';
+        btnP.classList.add('active');
+        btnS.classList.remove('active');
+        navP.classList.add('active');
+        navS.classList.remove('active');
+        window.location.hash = 'projects';
+      }
+    }
+
+    // Auto-detect hash on load
+    if (window.location.hash === '#services') {
+      switchView('services');
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Login & Registration | InteriorDesign</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ================= SITE HEADER / NAVBAR ================= -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="1-%20Home%20Page.html" class="brand-logo">
+        <div class="brand-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </div>
+        InteriorDesign
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="1-%20Home%20Page.html" class="nav-link">Home</a></li>
+          <li><a href="2.%20About%20Us.html" class="nav-link">About</a></li>
+          <li><a href="5.%20Product%20page.html#services" class="nav-link">Services</a></li>
+          <li><a href="5.%20Product%20page.html#projects" class="nav-link">Projects</a></li>
+          <li><a href="3.%20Contact.html" class="nav-link">Contact</a></li>
+          <li><a href="4.%20Login%20%20sign%20up.html" class="nav-auth-btn active">Client Portal</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="auth-wrapper">
+      <div class="auth-header">
+        <h2 style="font-size: 26px; margin-bottom: 6px;">Client Portal</h2>
+        <p style="font-size: 13.5px; color: #718096;">Access your project updates, invoices and consultation calendar</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Create Account</button>
+      </div>
+
+      <!-- SIGN IN FORM -->
+      <div class="auth-body" id="loginFormSection">
+        <div id="loginAlert" style="display:none; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+
+        <form id="clientLoginForm" novalidate>
+          <div class="form-group">
+            <label for="clientLoginEmail" class="form-label">Email Address *</label>
+            <input type="email" id="clientLoginEmail" class="form-control" placeholder="name@example.com">
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="clientLoginPassword" class="form-label">Password *</label>
+            <input type="password" id="clientLoginPassword" class="form-control" placeholder="••••••••">
+            <div class="invalid-feedback">Password is required.</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 13px;">
+            <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="clientRemember"> Remember me
+            </label>
+            <a href="#" style="color: var(--accent); font-weight: 500;" onclick="alert('Password reset link will be dispatched to your registered email.'); return false;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; color: #718096;">
+          Are you an administrator? <a href="../Admin/4.%20Login%20%20page.html" style="color: var(--accent); font-weight: 600;">Go to Admin Login &rarr;</a>
+        </div>
+      </div>
+
+      <!-- REGISTRATION / SIGN UP FORM (Full JS Validations) -->
+      <div class="auth-body" id="registerFormSection" style="display: none;">
+        <div id="registerAlert" style="display:none; padding:10px 14px; border-radius:4px; font-size:13px; margin-bottom:16px;"></div>
+
+        <form id="clientRegisterForm" novalidate>
+          <!-- 1. All fields required validation -->
+          <div class="form-group">
+            <label for="regFullName" class="form-label">Full Name *</label>
+            <input type="text" id="regFullName" class="form-control" placeholder="John Doe">
+            <div class="invalid-feedback">Full name is required.</div>
+          </div>
+
+          <!-- 3. Email Pattern validation -->
+          <div class="form-group">
+            <label for="regEmail" class="form-label">Email Address *</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="john@example.com">
+            <div class="invalid-feedback">Please enter a valid email pattern (e.g. user@domain.com).</div>
+          </div>
+
+          <!-- 5. Phone number pattern validation (10 digits) -->
+          <div class="form-group">
+            <label for="regPhone" class="form-label">Phone Number *</label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="10-digit number (e.g. 9876543210)">
+            <div class="invalid-feedback">Must be a valid 10-digit phone number without letters or symbols.</div>
+          </div>
+
+          <!-- 2 & 4. Password Length & Password Pattern validation -->
+          <div class="form-group">
+            <label for="regPassword" class="form-label">Create Password *</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="At least 8 chars with Upper, Lower, Digit, Symbol">
+            <div class="invalid-feedback">Password does not meet the security criteria.</div>
+            
+            <!-- Real-time Validation Criteria Checklist (matching JS Validations assignment) -->
+            <div class="validation-checklist">
+              <div class="validation-rule" id="rule-length">✕ At least 8 characters in length</div>
+              <div class="validation-rule" id="rule-upper">✕ At least one uppercase letter (A-Z)</div>
+              <div class="validation-rule" id="rule-lower">✕ At least one lowercase letter (a-z)</div>
+              <div class="validation-rule" id="rule-digit">✕ At least one digit (0-9)</div>
+              <div class="validation-rule" id="rule-special">✕ At least one special character (!@#$%^&*)</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regConfirmPassword" class="form-label">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="form-control" placeholder="Repeat password">
+            <div class="invalid-feedback">Passwords do not match.</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= SITE FOOTER (Wireframe) ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <h4>InteriorDesign</h4>
+          <p class="footer-tagline">Creative Spaces. Better Life.</p>
+        </div>
+
+        <div class="footer-col-contact">
+          <h5>Contact us</h5>
+          <p class="footer-contact-text">
+            +1 234 567 8900<br>
+            info@interiordesign.com
+          </p>
+        </div>
+
+        <div class="footer-col-social">
+          <h5>Follow us</h5>
+          <div class="social-icons-wrap">
+            <a href="#" class="social-circle-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2025 InteriorDesign Firm. All rights reserved.</span>
+        <span>Administrator Access: <a href="../Admin/4.%20Login%20%20page.html" class="admin-portal-link">Admin Dashboard &rarr;</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/store.js"></script>
+  <script src="../assets/js/validation.js"></script>
+  <script>
+    function switchAuthTab(mode) {
+      const tabLogin = document.getElementById('tabLogin');
+      const tabRegister = document.getElementById('tabRegister');
+      const loginSection = document.getElementById('loginFormSection');
+      const registerSection = document.getElementById('registerFormSection');
+
+      if (mode === 'login') {
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        loginSection.style.display = 'block';
+        registerSection.style.display = 'none';
+      } else {
+        tabLogin.classList.remove('active');
+        tabRegister.classList.add('active');
+        loginSection.style.display = 'none';
+        registerSection.style.display = 'block';
+      }
+    }
+
+    // Interactive Password Strength Checklist Listener
+    const passInput = document.getElementById('regPassword');
+    const ruleLen = document.getElementById('rule-length');
+    const ruleUp = document.getElementById('rule-upper');
+    const ruleLow = document.getElementById('rule-lower');
+    const ruleDig = document.getElementById('rule-digit');
+    const ruleSpec = document.getElementById('rule-special');
+
+    if (passInput) {
+      passInput.addEventListener('input', () => {
+        const val = passInput.value;
+        const hasLen = val.length >= 8;
+        const hasUp = Validator.patterns.passwordUpper.test(val);
+        const hasLow = Validator.patterns.passwordLower.test(val);
+        const hasDig = Validator.patterns.passwordDigit.test(val);
+        const hasSpec = Validator.patterns.passwordSpecial.test(val);
+
+        updateRule(ruleLen, hasLen, 'At least 8 characters in length');
+        updateRule(ruleUp, hasUp, 'At least one uppercase letter (A-Z)');
+        updateRule(ruleLow, hasLow, 'At least one lowercase letter (a-z)');
+        updateRule(ruleDig, hasDig, 'At least one digit (0-9)');
+        updateRule(ruleSpec, hasSpec, 'At least one special character (!@#$%^&*)');
+      });
+    }
+
+    function updateRule(element, isPassed, text) {
+      if (isPassed) {
+        element.classList.add('passed');
+        element.textContent = '✓ ' + text;
+      } else {
+        element.classList.remove('passed');
+        element.textContent = '✕ ' + text;
+      }
+    }
+
+    // Client Login Submission
+    document.getElementById('clientLoginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('clientLoginEmail').value.trim();
+      const pass = document.getElementById('clientLoginPassword').value;
+      const alertBox = document.getElementById('loginAlert');
+
+      const isEmailValid = Validator.isValidEmail(email);
+      const isPassValid = Validator.isNotEmpty(pass);
+
+      Validator.setFieldStatus(document.getElementById('clientLoginEmail'), isEmailValid, 'Valid email required.');
+      Validator.setFieldStatus(document.getElementById('clientLoginPassword'), isPassValid, 'Password required.');
+
+      if (!isEmailValid || !isPassValid) return;
+
+      const user = Store.loginUser(email, pass);
+      if (user) {
+        alertBox.style.display = 'block';
+        alertBox.style.backgroundColor = '#f0fff4';
+        alertBox.style.color = '#22543d';
+        alertBox.textContent = `Welcome back, ${user.name}! Redirecting to portfolio...`;
+        setTimeout(() => {
+          window.location.href = '1-%20Home%20Page.html';
+        }, 1200);
+      } else {
+        alertBox.style.display = 'block';
+        alertBox.style.backgroundColor = '#fff5f5';
+        alertBox.style.color = '#c53030';
+        alertBox.textContent = 'Invalid credentials or user not found. Please register an account.';
+      }
+    });
+
+    // Client Registration Submission (Enforcing all 5 Validations)
+    document.getElementById('clientRegisterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('regFullName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const confirmPass = document.getElementById('regConfirmPassword').value;
+      const alertBox = document.getElementById('registerAlert');
+
+      const isNameValid = Validator.isNotEmpty(name);
+      const isEmailValid = Validator.isValidEmail(email);
+      const isPhoneValid = Validator.isValidPhone(phone);
+      const isPassPatternValid = Validator.isValidPasswordPattern(pass);
+      const isMatch = pass === confirmPass && Validator.isNotEmpty(confirmPass);
+
+      Validator.setFieldStatus(document.getElementById('regFullName'), isNameValid, 'Full name is required.');
+      Validator.setFieldStatus(document.getElementById('regEmail'), isEmailValid, 'Must be a valid email format.');
+      Validator.setFieldStatus(document.getElementById('regPhone'), isPhoneValid, 'Phone number must be exactly 10 digits.');
+      Validator.setFieldStatus(document.getElementById('regPassword'), isPassPatternValid, 'Password must fulfill all 5 security rules.');
+      Validator.setFieldStatus(document.getElementById('regConfirmPassword'), isMatch, 'Passwords do not match.');
+
+      if (!isNameValid || !isEmailValid || !isPhoneValid || !isPassPatternValid || !isMatch) {
+        alertBox.style.display = 'block';
+        alertBox.style.backgroundColor = '#fff5f5';
+        alertBox.style.color = '#c53030';
+        alertBox.textContent = '⚠️ Please fix all form validation errors before proceeding.';
+        return;
+      }
+
+      try {
+        Store.registerUser({ name, email, phone, password: pass });
+        alertBox.style.display = 'block';
+        alertBox.style.backgroundColor = '#f0fff4';
+        alertBox.style.color = '#22543d';
+        alertBox.textContent = '✓ Account created successfully! Please sign in.';
+        document.getElementById('clientRegisterForm').reset();
+        setTimeout(() => {
+          switchAuthTab('login');
+          document.getElementById('clientLoginEmail').value = email;
+        }, 1500);
+      } catch (err) {
+        alertBox.style.display = 'block';
+        alertBox.style.backgroundColor = '#fff5f5';
+        alertBox.style.color = '#c53030';
+        alertBox.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>
+
